@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <link rel="stylesheet" href="styles.css">
+ <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    
+</head>
+<body>
+    <h1>Contact Form</h1>
+        <nav class="main-nav">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Our-Cats.html">Our Cats</a></li>
+        <li><a href="Favorite-Foods.html">Contact</a></li>
+        
+    </ul>
+    </nav>
+
+    <main class="form-wrapper">
+    <form id="contact-form" novalidate>
+      
+      
+      <fieldset class="form-fieldset">
+        <legend class="form-label">Name <span class="required" aria-hidden="true">*</span></legend>
+        <div class="input-row">
+          <div class="input-col">
+            <label for="first-name" class="sub-label">First Name</label>
+            <input type="text" id="first-name" name="firstName" required aria-required="true" aria-describedby="first-name-error">
+            <span id="first-name-error" class="error-message" role="alert"></span>
+          </div>
+          <div class="input-col">
+            <label for="last-name" class="sub-label">Last Name</label>
+            <input type="text" id="last-name" name="lastName" required aria-required="true" aria-describedby="last-name-error">
+            <span id="last-name-error" class="error-message" role="alert"></span>
+          </div>
+        </div>
+      </fieldset>
+
+      
+      <div class="form-group">
+        <label for="email" class="form-label">Email <span class="required" aria-hidden="true">*</span></label>
+        <input type="email" id="email" name="email" required aria-required="true" aria-describedby="email-error">
+        <span id="email-error" class="error-message" role="alert"></span>
+      </div>
+
+      
+      <fieldset class="form-fieldset">
+        <legend class="form-label">Address <span class="required" aria-hidden="true">*</span></legend>
+        <div class="form-group">
+          <label for="street-address" class="sub-label">Street Address</label>
+          <input type="text" id="street-address" name="streetAddress" required aria-required="true" aria-describedby="address-error">
+          <span id="address-error" class="error-message" role="alert"></span>
+        </div>
+      </fieldset>
+
+      
+      <div class="form-group">
+        <label for="subject" class="form-label">Subject <span class="required" aria-hidden="true">*</span></label>
+        <textarea id="subject" name="subject" rows="4" required aria-required="true" aria-describedby="subject-error"></textarea>
+        <span id="subject-error" class="error-message" role="alert"></span>
+      </div>
+
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+  </main>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const fields = [
+      { id: 'first-name', errorId: 'first-name-error', message: 'Please enter your first name.' },
+      { id: 'last-name', errorId: 'last-name-error', message: 'Please enter your last name.' },
+      { id: 'email', errorId: 'email-error', message: 'Please enter a valid email address.' },
+      { id: 'street-address', errorId: 'address-error', message: 'Please enter your street address.' },
+      { id: 'subject', errorId: 'subject-error', message: 'Please enter a subject or message.' }
+    ];
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      let isValid = true;
+
+      fields.forEach(({ id, errorId, message }) => {
+        const input = document.getElementById(id);
+        const errorSpan = document.getElementById(errorId);
+
+        if (!input.checkValidity()) {
+          input.setAttribute('aria-invalid', 'true');
+          errorSpan.textContent = message;
+          isValid = false;
+        } else {
+          input.removeAttribute('aria-invalid');
+          errorSpan.textContent = '';
+        }
+      });
+
+      const status = document.getElementById('form-status');
+      if (isValid) {
+        status.textContent = 'Thank you! Your message has been submitted.';
+        form.reset();
+      } else {
+        status.textContent = '';
+      }
+    });
+  </script>
+</body>
+</html>
