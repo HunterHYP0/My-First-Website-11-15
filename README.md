@@ -6,5 +6,5 @@
 * 
 * i used proximity by placing the contact inputs close together
 * 
-* i used similarity by making every card have the same pale green font color and borders and purple background
+* i used similarity by making every card have the same purple font color and purple borders and pale green background
 
